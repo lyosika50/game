@@ -5,21 +5,43 @@ from pygame.locals import *
 import sys
 import random
 
-#default:(W,H,m,md,T,t,Tmin) = (16,12,40,30,30,2,10)
 
-prm = {"W":30,"H":25,"m":25,"md":15,"T":10,"t":2,"Tmin":5,"L":100}
+"""
+あそびかた
+矢印キーで操作
+spaceキーでコンティニュー
+escまたはqで終了
+
+
+prmの値を変更すれば難易度を変えられます:
+W,H 横縦マス数
+m マスのサイズ
+md 描写されるマスのサイズ
+T 初期周期 (Tが小さいほど速度が上がります)
+t 周期の減少値 (tが大きいほど速度の上昇が早くなります)
+Tmin 最小周期 (Tminが小さいほど最終的な速度が上がります)
+L 初期長さ
+"""
+
+prmEasy = {"W":16,"H":12,"m":40,"md":30,"T":30,"t":2,"Tmin":10,"L":1}
+prmHard = {"W":30,"H":25,"m":25,"md":15,"T":10,"t":2,"Tmin":5,"L":20}
+
+#設定用パラメータ
+prm = prmEasy
+#prm = prmHard
+
 
 class Game:
 
     kst = 0 #キー状態
     ky = {K_RIGHT:1,K_UP:2,K_LEFT:3,K_DOWN:4,K_ESCAPE:-1,K_q:-1,K_SPACE:-2}
-    W,H = prm["W"],prm["H"] #ゲームのマス目サイズ
-    m = prm["m"] #マス目サイズ
-    md = prm["md"] #描写マス目サイズ
+    W,H = prm["W"],prm["H"]
+    m = prm["m"]
+    md = prm["md"]
     mv = {1:(1,0),2:(0,-1),3:(-1,0),4:(0,1)} #移動
     SCREEN_SIZE = (m*W, m*H)
     fst = [int(W/2),int(H/2)] #初期位置
-    t,Tmin = prm["t"],prm["Tmin"] #減少値、最小周期
+    t,Tmin = prm["t"],prm["Tmin"]
 
     def __init__(self):
         pygame.init();
