@@ -21,9 +21,7 @@ class Game:
     def __init__(self):
         pygame.init();
         pygame.display.set_caption(u"TETRIS")
-        self.mf = pygame.font.Font("ipag.ttf", 80)
         self.scr = pygame.display.set_mode(self.SCREEN_SIZE)
-        self.hello1 = self.mf.render(u"こんにちは！", False, (0,0,0))
         self.sec = 0
         self.T = 1
         self.t = 1 
@@ -127,8 +125,6 @@ class Game:
 
     def draw(self):
         self.scr.fill((0,0,0))
-        #self.hello1 = self.mf.render(u"%d"%self.state, False, (0,255,0))
-        self.scr.blit(self.hello1, (20,50))
 
         for y in range(self.H):
             for x in range(self.W):
